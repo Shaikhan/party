@@ -1,7 +1,15 @@
 /* Softer Dark Mode */
 body {
   font-family: 'Arial', sans-serif;
-  background: linear-gradient(135deg, #1e2761 0%, #2f3c7e 100%);
+  background: linear-gradient(135deg, 
+    #1e2761 0%,
+    #243070 25%,
+    #2a3980 50%,
+    #2f3c7e 75%,
+    #343f8f 100%
+  );
+  background-attachment: fixed;
+  min-height: 100vh;
   color: var(--text-color);
   text-align: center;
   margin: 0;
@@ -228,4 +236,98 @@ h1::after {
 
 h1::after {
   animation: glow 3s ease-in-out infinite;
+}
+
+.timer {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  padding: 20px;
+  flex-wrap: wrap;
+}
+
+.timer-block {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 100px;
+}
+
+.timer-block .number {
+  font-size: 64px;
+  font-weight: bold;
+  color: var(--highlight-color);
+  text-shadow: 
+    0 0 10px rgba(76, 201, 240, 0.4),
+    0 0 20px rgba(76, 201, 240, 0.2);
+}
+
+.timer-block .label {
+  font-size: 18px;
+  text-transform: uppercase;
+  margin-top: 10px;
+  color: var(--accent-color);
+  letter-spacing: 2px;
+  text-shadow: 0 0 10px rgba(0, 194, 209, 0.3);
+}
+
+.subtitle {
+  font-size: 1.8em;
+  color: var(--accent-color);
+  text-shadow: 
+    0 0 10px rgba(0, 194, 209, 0.4),
+    0 0 20px rgba(0, 194, 209, 0.2);
+  margin: 20px 0 40px 0;
+  font-weight: 500;
+  letter-spacing: 1px;
+}
+
+html {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+/* Mobile responsiveness */
+@media screen and (max-width: 600px) {
+  .timer {
+    gap: 10px;
+    padding: 10px;
+  }
+
+  .timer-block {
+    min-width: 70px;
+  }
+
+  .timer-block .number {
+    font-size: 36px;
+  }
+
+  .timer-block .label {
+    font-size: 14px;
+    margin-top: 5px;
+  }
+
+  h1 {
+    font-size: 2em;
+  }
+
+  .subtitle {
+    font-size: 1.4em;
+  }
+}
+
+/* For very small screens */
+@media screen and (max-width: 360px) {
+  .timer-block {
+    min-width: 60px;
+  }
+
+  .timer-block .number {
+    font-size: 28px;
+  }
+
+  .timer-block .label {
+    font-size: 12px;
+  }
 }
