@@ -1,0 +1,231 @@
+/* Softer Dark Mode */
+body {
+  font-family: 'Arial', sans-serif;
+  background: linear-gradient(135deg, #1e2761 0%, #2f3c7e 100%);
+  color: var(--text-color);
+  text-align: center;
+  margin: 0;
+}
+
+.container {
+  padding: 20px;
+}
+
+/* Base styles */
+:root {
+  --background-color: #1e2761;
+  --card-color: #2f3c7e;
+  --ingredient-color: #4d5aaf;
+  --accent-color: #00c2d1;
+  --highlight-color: #4cc9f0;
+  --text-color: #fff;
+  --shadow-color: rgba(0, 194, 209, 0.3);
+}
+
+.cocktail-card {
+  background: var(--card-color);
+  color: var(--text-color);
+  padding: 15px;
+  border-radius: 12px;
+  box-shadow: 0 0 20px var(--shadow-color);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(5px);
+  display: flex;
+  flex-direction: column;
+  cursor: auto;
+  transition: all 0.3s ease;
+}
+
+.cocktail-card h2 {
+  color: var(--highlight-color);
+  text-shadow: 0 0 10px rgba(76, 201, 240, 0.4);
+}
+
+/* Grid layout */
+.cocktail-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 20px;
+}
+
+/* Overlay styles */
+.container.has-selected::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 999;
+}
+
+/* Blur background cards */
+.container.has-selected .cocktail-card {
+  filter: blur(4px) saturate(0.8);
+  transition: all 0.3s ease;
+}
+
+/* Selected overlay card styles */
+.selected-overlay {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1000;
+  width: 80%;
+  max-width: 600px;
+  max-height: 90vh;
+  overflow-y: auto;
+  background: var(--card-color);
+  box-shadow: 0 0 30px var(--shadow-color);
+  border: 2px solid var(--accent-color);
+  filter: none !important; /* Override any blur */
+  transition: all 0.3s ease-in-out;
+}
+
+.close-button {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  width: 44px;
+  height: 44px;
+  min-width: 44px; /* Prevent squishing on mobile */
+  min-height: 44px; /* Prevent squishing on mobile */
+  border-radius: 50%;
+  border: none;
+  background: var(--accent-color);
+  color: var(--text-color);
+  font-size: 24px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0; /* Remove any default padding */
+  line-height: 1; /* Ensure × is centered */
+  transition: all 0.3s ease;
+  box-shadow: 0 0 15px rgba(0, 194, 209, 0.4);
+}
+
+.close-button:hover {
+  background: var(--highlight-color);
+  transform: rotate(90deg);
+}
+
+.close-button:active {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+/* Keep existing ingredient and step styles */
+.cocktail-card .ingredient, .step {
+  font-size: 16px;
+  background: var(--ingredient-color);
+  color: var(--text-color);
+  margin: 5px 0;
+  padding: 8px;
+  border-radius: 5px;
+  display:flex;
+  justify-content: space-between;
+  flex-direction: row;
+}
+
+.cocktail-card .ingredient {
+  background: var(--ingredient-color);
+  color: var(--text-color);
+  border-left: 4px solid var(--accent-color);
+  margin: 8px 0;
+  padding: 10px;
+  border-radius: 0 8px 8px 0;
+  transition: transform 0.2s ease;
+}
+
+.cocktail-card .ingredient:hover {
+  transform: translateX(5px);
+}
+
+.step {
+  text-align: left;
+  background: var(--ingredient-color);
+  border-left: 4px solid var(--highlight-color);
+  padding: 12px;
+  margin: 10px 0;
+  border-radius: 0 8px 8px 0;
+}
+
+.cocktail-card .steps-header {
+  margin-top: 20px; /* Pushes the steps-header to the bottom */
+  margin-bottom: 10px; /* Adjust the value as needed */
+  flex-grow: 1;
+  align-content: end;
+  color: var(--highlight-color);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  text-shadow: 0 0 10px rgba(72, 202, 228, 0.4);
+}
+
+/* Add party confetti-like decoration */
+.cocktail-list::before {
+  content: '🍸';
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  font-size: 2em;
+  animation: float 3s ease-in-out infinite;
+}
+
+.cocktail-list::after {
+  content: '🍹';
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  font-size: 2em;
+  animation: float 3s ease-in-out infinite reverse;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-20px); }
+}
+
+/* Add these styles for the main header */
+h1 {
+  font-size: 3em;
+  color: var(--highlight-color);
+  text-shadow: 
+    0 0 10px rgba(76, 201, 240, 0.4),
+    0 0 20px rgba(76, 201, 240, 0.2);
+  margin: 30px 0;
+  font-weight: 700;
+  letter-spacing: 2px;
+  position: relative;
+  display: inline-block;
+}
+
+h1::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60%;
+  height: 3px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--accent-color),
+    var(--highlight-color),
+    var(--accent-color),
+    transparent
+  );
+  border-radius: 2px;
+}
+
+/* Optional: Add a subtle animation to the underline */
+@keyframes glow {
+  0%, 100% { opacity: 0.8; }
+  50% { opacity: 1; }
+}
+
+h1::after {
+  animation: glow 3s ease-in-out infinite;
+}
