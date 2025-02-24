@@ -1,7 +1,7 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import "./App.css";
 
-function Timer() {
+function Timer({ targetDate }) {
     const [timeLeft, setTimeLeft] = useState({
         days: 0,
         hours: 0,
@@ -10,8 +10,6 @@ function Timer() {
     });
 
     useEffect(() => {
-        const targetDate = new Date('2025-02-28T17:00:00+02:00'); // Romania time (UTC+2)
-
         const timer = setInterval(() => {
             const now = new Date();
             const difference = targetDate - now;
@@ -31,13 +29,20 @@ function Timer() {
         }, 1000);
 
         return () => clearInterval(timer);
-    }, []);
+    }, [targetDate]);
 
     return (
         <>
             <h1>Party Time!</h1>
             <h2 className="subtitle">
-                February 28th, 2025 at 17:00
+                {targetDate.toLocaleString('en-US', {
+                    month: 'long',
+                    day: 'numeric',
+                    year: 'numeric',
+                    hour: 'numeric',
+                    minute: '2-digit',
+                    hour12: false
+                })}
             </h2>
             <div className="timer">
                 <div className="timer-block">
