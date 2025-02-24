@@ -6,7 +6,7 @@ import Drinks from "./Drinks";
 
 function App() {
   const targetDate = useMemo(() => new Date('2025-02-28T17:00:00+02:00'), []); // Party time
-  const revealDate = useMemo(() => new Date('2025-02-28T00:00:00+02:00'), []); // Midnight RO time
+  const revealDate = useMemo(() => new Date('2025-02-28T16:00:00+02:00'), []); // Midnight RO time
   const [showDrinks, setShowDrinks] = useState(false);
   const [showTimer, setShowTimer] = useState(true);
 
