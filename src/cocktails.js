@@ -322,6 +322,20 @@ const cocktails = [
             "Top with cola and stir gently."
         ],
         "popularity": 7.1
+    },
+    {
+        "name": "Bourbon Manhattan",
+        "ingredients": [
+            { "name": "Rye whiskey", "quantity": "2 oz" },
+            { "name": "Vermouth", "quantity": "1 oz" },
+            { "name": "Angostura Bitters", "quantity": "2 dahses" }
+        ],
+        "steps": [
+            "Fill a glass with ice.",
+            "Pour everything.",
+            "Mix and then strain."
+        ],
+        "popularity": 13.1
     }
 ];
 
